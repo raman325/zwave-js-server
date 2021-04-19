@@ -5,6 +5,7 @@ import { DriverCommand } from "./command";
 import { IncomingMessageDriver } from "./incoming_message";
 import { DriverResultTypes } from "./outgoing_message";
 import { dumpDriver, dumpLogConfig } from "../state";
+import { version } from "../const";
 
 export class DriverMessageHandler {
   static async handle(
@@ -22,8 +23,8 @@ export class DriverMessageHandler {
         return {};
       case DriverCommand.enableStatistics:
         driver.enableStatistics({
-          applicationName: message.applicationName,
-          applicationVersion: message.applicationVersion,
+          applicationName: message.applicationName + " / zwave-js-server",
+          applicationVersion: message.applicationVersion + " / " + version,
         });
         return {};
       case DriverCommand.getLogConfig:
